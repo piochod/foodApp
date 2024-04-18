@@ -8,7 +8,7 @@ const HomeSection = () => {
       <div className='left'>
           <h1>Food App</h1>
           <h2><ReactTyped 
-            strings={["Ready to take your eating to the next level?","Join us now!"]}
+            strings={["Ready to take your diet to the next level?","Join us now!"]}
             typeSpeed={70}
             startDelay={1000}
             backDelay={2000}
