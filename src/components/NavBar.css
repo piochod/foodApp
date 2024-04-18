@@ -1,0 +1,35 @@
+.navbar{
+    display:flex;
+    align-items: center;
+    justify-content: space-between; 
+    background-color: rgba(255, 255, 255, 0.955);
+    margin: 0;
+    position: sticky;
+    z-index: 1;
+    box-shadow: 0px 0px 5px 0px;
+}
+
+.logo img{
+    width: 74px;
+    padding: 16px;
+}
+
+.links{
+    display: flex;
+    text-decoration: none;
+    padding-right: 16px;
+}
+
+.links li{
+    padding: 16px;
+    list-style: none;
+    cursor: pointer;
+}
+
+.links li:hover{
+    background-color: #13af47;
+    border-radius: 9999px;
+    color: white;
+}
+
+
