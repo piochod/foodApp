@@ -6,6 +6,7 @@
     align-items: center;
     justify-content:center;
     padding: 90px;
+    position: relative;
 }
 
 
@@ -21,14 +22,16 @@
 }
 
 .homeSection .left{
+    padding: 50px;
     height: 100%;
-    flex: 50%;
+    flex: 30%;
     display: flex;
-    align-items: center;
+    align-items: baseline;
     justify-content:center;
     flex-direction: column;
 
 }
+
 
 
 .homeSection .right img{
@@ -36,11 +39,13 @@
     height: auto; /* Maintain aspect ratio */
     display: block; /* Remove default inline display */
     margin: 0; /* Remove any default margin */
-    border-radius: 5px;
+    border-radius: 9999px;
+    z-index: 1;
 }
 
 .homeSection h1{
     margin: 10px 0px ;
+    color: #13af47;
 }
 
 .homeSection button{
@@ -60,4 +65,24 @@
 .homeSection button:hover{
     background-color: #10923b;
 
+}
+
+.custom-shape-divider-top-1713526832 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+}
+
+.custom-shape-divider-top-1713526832 svg {
+    position: relative;
+    display: block;
+    width: calc(105% + 1.3px);
+    height: 135px;
+}
+
+.custom-shape-divider-top-1713526832 .shape-fill {
+    fill: #13AF47;
 }

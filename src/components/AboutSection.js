@@ -4,6 +4,7 @@ import './AboutSection.css'
 const AboutSection = () => {
   return (
     <div className='aboutSection'>
+
       <div className='left'>
         <img src={require("./img/food.png")} alt="food"/>
       </div>
