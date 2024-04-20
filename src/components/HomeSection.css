@@ -90,6 +90,8 @@
 @media (max-width: 1000px){
     .homeSection{
         flex-direction: column;
+        padding-left: 20px;
+        padding-right: 20px;
 
     }
 
