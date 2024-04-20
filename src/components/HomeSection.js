@@ -23,7 +23,7 @@ const HomeSection = () => {
             backSpeed={60}
             loop
           /></h2>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque fringilla aliquet nibh sed hendrerit. Nunc imperdiet lorem vitae vulputate maximus.</p>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
           <button>Sign Up</button>
         </div>
         <div className='right'>
