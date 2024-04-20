@@ -60,9 +60,7 @@
     border-radius: 0.2rem;
   }
 
-  .mobile-links{
-    display: none;
-  }
+
 
   @media (max-width: 650px){
     
