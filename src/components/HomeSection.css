@@ -86,3 +86,17 @@
 .custom-shape-divider-top-1713526832 .shape-fill {
     fill: #13AF47;
 }
+
+@media (max-width: 1000px){
+    .homeSection{
+        flex-direction: column;
+
+    }
+
+    .homeSection .right{
+        display: none;
+    }
+    .homeSection left{
+        align-items: center;
+    }
+}
