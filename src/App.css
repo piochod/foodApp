@@ -5,9 +5,12 @@
   font-style: normal;
   scrollbar-color: #8e8e8e #fff;
   scrollbar-width: thin;
-  overflow-y: hidden;
+
+  overflow-x: hidden;
+  
 }
 
 body{
   margin: 0;
+  
 }
