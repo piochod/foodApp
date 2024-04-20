@@ -96,7 +96,9 @@
     .homeSection .right{
         display: none;
     }
-    .homeSection left{
+    .homeSection .left{
         align-items: center;
+        flex: 0;
+        text-align: center;
     }
 }
