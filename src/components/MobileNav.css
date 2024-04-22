@@ -1,7 +1,7 @@
 .mobile-menu{
+    margin-top: 95px;
     display: flex;
     left:-100% !important;
-    align-items:calc(100vh);
     height: 100vh;
     justify-content: center;
     background-color: white;
