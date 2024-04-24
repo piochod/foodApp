@@ -17,7 +17,7 @@ const NavBar = ({
             <img src={require("./img/cutlery.png")} alt="cutlery"/>
         </div>
           <ul className="links">
-              <li><Link to="home" smooth={true} offset={-95} duration={500}>Home</Link></li>
+              <Link to="home" smooth={true} offset={-95} duration={500}><li>Home</li></Link>
               <li><Link to="about" smooth={true} offset={-95} duration={500}>About</Link></li>
               <li>Sign in</li>
               <li>Sign up</li>
