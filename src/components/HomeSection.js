@@ -28,7 +28,7 @@ const HomeSection = () => {
         </div>
         <div className='right'>
         
-          <img src="https://www.diabetesfoodhub.org/system/user_files/Images/1837-diabetic-pecan-crusted-chicken-breast_JulAug20DF_clean-simple_061720.jpg" alt="food"></img>
+          <img src={require("./img/homePage.png")} alt="food"></img>
         </div>
         
     </div>
