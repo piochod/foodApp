@@ -13,7 +13,7 @@ function App() {
   return (
     <div className="App">
       <NavBar menuOpen={menuOpen} setMenuOpen={() => setMenuOpen(!menuOpen)}/>
-      <MobileNav menuOpen={menuOpen}/>
+      <MobileNav menuOpen={menuOpen} setMenuOpen={() => setMenuOpen(!menuOpen)}/>
       <HomeSection/>
       <AboutSection />
       <Footer />
