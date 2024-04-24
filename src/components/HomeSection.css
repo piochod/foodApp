@@ -37,7 +37,7 @@
 
 
 .homeSection .right img{
-    width: 100%;
+    width: 80%;
     height: auto; /* Maintain aspect ratio */
     display: block; /* Remove default inline display */
     margin: 0; /* Remove any default margin */
