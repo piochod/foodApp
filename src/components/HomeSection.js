@@ -4,7 +4,7 @@ import './HomeSection.css'
 
 const HomeSection = () => {
   return (
-    <div className='homeSection'>
+    <div className='homeSection' id='home'>
       
       <div className='left'>
       <div className="custom-shape-divider-top-1713526832">
