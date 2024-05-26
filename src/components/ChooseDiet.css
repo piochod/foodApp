@@ -121,3 +121,10 @@
 .chooseDiet .searchMeals .buttons button:hover{
     background-color: #10923b;
 }
+
+@media (max-width: 650px){
+    .chooseDiet{
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+}
