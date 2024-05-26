@@ -1,0 +1,9 @@
+.searchBar-container{
+    padding: 16px;
+}
+
+.searchBar-container input{
+    width: 100%;
+    padding: 16px;
+    font-size: 20px;
+}

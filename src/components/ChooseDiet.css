@@ -1,0 +1,123 @@
+.chooseDiet{
+    height: 100%;
+    min-height: 759px;
+    width: 100%;
+    background-image: conic-gradient(from 90deg at -10% 100%, #bcc1cd 0deg, #bcc1cd 90deg, #fff 1turn);
+    color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 100px;
+    position: relative;
+    flex-direction: column;
+    margin-top: 30px;
+}
+
+.chooseDiet .hidden{
+    display: none;
+}
+
+
+.chooseDiet .choiceScreen form{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    font-size: 24px;
+}
+
+.chooseDiet .choiceScreen form .choiceCol{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 16px;
+}
+
+.chooseDiet .choiceScreen form .choiceCol label{
+    padding-right: 8px;
+}
+.chooseDiet .choiceScreen form select{
+    border-radius: 20%;
+    padding: 4px;
+    font-size: 20px;
+}
+
+.chooseDiet .choiceScreen button{
+    background-color: #13af47;
+    color: white;
+    border-radius: 9999px;
+    border: 0;
+    font-size: 22px;
+    padding: 10px 40px;
+    margin-top: 16px;
+    cursor: pointer;
+}
+
+.chooseDiet .choiceScreen button:hover{
+    background-color: #10923b;
+}
+
+
+.chooseDiet .searchMeals{
+    width: 100%;
+}
+
+.chooseDiet .searchMeals button{
+    background-color: #13af47;
+    color: white;
+    border: 0;
+    font-size: 20px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    padding: 8px;
+    cursor: pointer;
+}
+
+.chooseDiet .searchMeals button:hover{
+    background-color: #10923b;
+}
+
+.chooseDiet .searchMeals ul{
+    padding: 16px;
+    max-height: 400px;
+}
+
+.chooseDiet .searchMeals li{
+    list-style: none;
+    background-image: conic-gradient(from 90deg at -10% 100%, #bcc1cd 0deg, #bcc1cd 90deg, #fff 1turn);
+    border: 2px solid;
+    border-radius: 4px;
+    padding: 16px;
+    margin-top: 5px;
+    font-size: 24px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.chooseDiet .searchMeals .buttons{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px;
+}
+
+.chooseDiet .searchMeals .buttons button{
+    background-color: #13af47;
+    color: white;
+    border-radius: 9999px;
+    border: 0;
+    font-size: 22px;
+    padding: 10px 40px;
+    margin-top: 16px;
+    cursor: pointer;
+    width: auto;
+    height: auto;
+}
+
+.chooseDiet .searchMeals .buttons button:hover{
+    background-color: #10923b;
+}

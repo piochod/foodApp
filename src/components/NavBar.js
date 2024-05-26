@@ -18,7 +18,7 @@ const NavBar = ({
         </div>
           <ul className="links">
               <Link to="home" smooth={true} offset={-95} duration={500}><li>Home</li></Link>
-              <li><Link to="about" smooth={true} offset={-95} duration={500}>About</Link></li>
+              <Link to="about" smooth={true} offset={-95} duration={500}><li>About</li></Link>
               <li>Sign in</li>
               <li>Sign up</li>
           </ul>
