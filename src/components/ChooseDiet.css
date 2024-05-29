@@ -63,7 +63,7 @@
     width: 100%;
 }
 
-.chooseDiet .searchMeals button{
+.chooseDiet .searchMeals .green{
     background-color: #13af47;
     color: white;
     border: 0;
@@ -75,7 +75,23 @@
     cursor: pointer;
 }
 
-.chooseDiet .searchMeals button:hover{
+.chooseDiet .searchMeals .green:hover{
+    background-color: #10923b;
+}
+
+.chooseDiet .searchMeals .red{
+    background-color: red;
+    color: white;
+    border: 0;
+    font-size: 20px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    padding: 8px;
+    cursor: pointer;
+}
+
+.chooseDiet .searchMeals .green:hover{
     background-color: #10923b;
 }
 

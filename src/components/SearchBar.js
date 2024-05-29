@@ -10,7 +10,7 @@ const SearchBar = ({setResults}) => {
         const data = (await response.json());
         const results = data.filter((user) =>{
             return user && user.name && user.name.toLowerCase().includes(value);
-        })
+        });
         setResults(results);
     }
     const handleChange = (value) =>{

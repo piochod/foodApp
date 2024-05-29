@@ -7,6 +7,7 @@ const ChooseDiet = () => {
 
     const [firstFinished,setFirstFinished] = useState(false);
     const [results, setResults] = useState([]);
+    const [added, setAdded] = useState([]);
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -21,6 +22,19 @@ const ChooseDiet = () => {
 
     const handleChange = (e) =>{
         setFirstFinished(!firstFinished);
+    }
+
+
+    const handleAdding = (e)=>{
+        const itemToAdd = e.target.value;
+        console.log(itemToAdd);
+        if (added.includes(itemToAdd)){
+            setAdded(added.filter(item => item !== itemToAdd));
+        }
+        else{
+            setAdded([...added,itemToAdd]);
+        }
+        
     }
   return (
     <div className='chooseDiet'>
@@ -75,7 +89,7 @@ const ChooseDiet = () => {
             <SearchBar setResults={setResults}/>
             <ul>
             {results.map((result,id) => {
-                return <li key={id}>{result.name} <button>+</button></li>;
+                return <li key={id}>{result.name} <button className = {added.includes(result.name) ? 'red' : 'green'} value={result.name} onClick={handleAdding}>{added.includes(result.name) ? 'x' : '+'}</button></li>;
             })}
             </ul>
             <div className='buttons'>
