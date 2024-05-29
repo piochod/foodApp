@@ -27,7 +27,6 @@ const ChooseDiet = () => {
 
     const handleAdding = (e)=>{
         const itemToAdd = e.target.value;
-        console.log(itemToAdd);
         if (added.includes(itemToAdd)){
             setAdded(added.filter(item => item !== itemToAdd));
         }
@@ -89,7 +88,7 @@ const ChooseDiet = () => {
             <SearchBar setResults={setResults}/>
             <ul>
             {results.map((result,id) => {
-                return <li key={id}>{result.name} <button className = {added.includes(result.name) ? 'red' : 'green'} value={result.name} onClick={handleAdding}>{added.includes(result.name) ? 'x' : '+'}</button></li>;
+                return <li key={id}>{result.name} <button className = {added.includes(result.name) ? 'red' : 'green'} value={result.name} onClick={handleAdding}>{added.includes(result.name) ? '✖' : '✚'}</button></li>;
             })}
             </ul>
             <div className='buttons'>
