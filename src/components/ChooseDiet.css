@@ -17,7 +17,6 @@
     display: none;
 }
 
-
 .chooseDiet .choiceScreen form{
     display: flex;
     align-items: center;
@@ -58,7 +57,6 @@
     background-color: #10923b;
 }
 
-
 .chooseDiet .searchMeals{
     width: 100%;
 }
@@ -89,6 +87,10 @@
     border-radius: 50%;
     padding: 8px;
     cursor: pointer;
+}
+
+.chooseDiet .searchMeals .red:hover{
+    background-color: rgb(177, 33, 33);
 }
 
 .chooseDiet .searchMeals .green:hover{

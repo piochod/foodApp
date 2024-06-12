@@ -41,7 +41,6 @@
     color: white;
 }
 
-
 .menu{
     cursor: pointer;
     display: none;
@@ -54,30 +53,23 @@
     height: 2rem;
   }
   
-  .menu span{
-    height: 0.4rem;
-    width: 100%;
-    background-color: black;
-    border-radius: 0.2rem;
-  }
+.menu span{
+  height: 0.4rem;
+  width: 100%;
+  background-color: black;
+  border-radius: 0.2rem;
+}
 
-
-
-  @media (max-width: 650px){
-    
+@media (max-width: 650px){    
     .navbar{
       position: fixed;
     }
 
-
     .menu{
       display: flex;
     }
-  
-  
+    
     .links {
       display: none;
     }
-
-    
   }

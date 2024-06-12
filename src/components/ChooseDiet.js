@@ -1,13 +1,30 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import './ChooseDiet.css'
 import { useState } from 'react'
 import SearchBar from './SearchBar';
+import Modal from './Modal';
 
 const ChooseDiet = () => {
 
-    const [firstFinished,setFirstFinished] = useState(false);
+    const [firstFinished,setFirstFinished] = useState(true);
     const [results, setResults] = useState([]);
     const [added, setAdded] = useState([]);
+    const [modal, setModal] = useState(false);
+    const [selectedResult, setSelectedResult] = useState(null);
+
+    const fetchdata = async (id) =>{
+        const response = await fetch(`https://localhost:7182/api/Recipes/${id}`);
+        const responseData = (await response.json());
+        setSelectedResult(responseData);
+      };
+
+
+
+
+    const toggleModal = (result) =>{
+        setSelectedResult(result);
+        setModal(!modal);
+    };
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -18,14 +35,15 @@ const ChooseDiet = () => {
         });
         console.log(data);
         setFirstFinished(!firstFinished);
-    }
+    };
 
     const handleChange = (e) =>{
         setFirstFinished(!firstFinished);
-    }
+    };
 
 
     const handleAdding = (e)=>{
+        e.stopPropagation();
         const itemToAdd = e.target.value;
         if (added.includes(itemToAdd)){
             setAdded(added.filter(item => item !== itemToAdd));
@@ -35,6 +53,14 @@ const ChooseDiet = () => {
         }
         
     }
+
+    useEffect(() =>{
+        if(modal && selectedResult){
+            fetchdata(selectedResult.id);
+        }
+    },[modal,selectedResult])
+
+
   return (
     <div className='chooseDiet'>
         <h1>Choose your diet!</h1>
@@ -88,13 +114,25 @@ const ChooseDiet = () => {
             <SearchBar setResults={setResults}/>
             <ul>
             {results.map((result,id) => {
-                return <li key={id}>{result.name} <button className = {added.includes(result.name) ? 'red' : 'green'} value={result.name} onClick={handleAdding}>{added.includes(result.name) ? '✖' : '✚'}</button></li>;
+                return <li key={id} onClick={() =>toggleModal(result)}>
+                    {result.title} 
+                    <button 
+                        className = {added.includes(`${result.id}`) ? 'red' : 'green'} 
+                        value={result.id} 
+                        onClick={(event) => {handleAdding(event)}}
+                    >
+                        {added.includes(`${result.id}`) ? '✖' : '✚'}
+                    </button>
+                </li>;
             })}
             </ul>
             <div className='buttons'>
                 <button onClick={handleChange}>Back</button>
                 <button>Finish</button>
             </div>
+
+            <Modal modal={modal} setModal={toggleModal} selectedResult={selectedResult}/>
+
         </div>
       
     </div>
