@@ -1,30 +1,11 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import './ChooseDiet.css'
 import { useState } from 'react'
-import SearchBar from './SearchBar';
-import Modal from './Modal';
+import SearchMeals from './SearchMeals';
 
 const ChooseDiet = () => {
-
-    const [firstFinished,setFirstFinished] = useState(true);
-    const [results, setResults] = useState([]);
-    const [added, setAdded] = useState([]);
-    const [modal, setModal] = useState(false);
-    const [selectedResult, setSelectedResult] = useState(null);
-
-    const fetchdata = async (id) =>{
-        const response = await fetch(`https://localhost:7182/api/Recipes/${id}`);
-        const responseData = (await response.json());
-        setSelectedResult(responseData);
-      };
-
-
-
-
-    const toggleModal = (result) =>{
-        setSelectedResult(result);
-        setModal(!modal);
-    };
+    const [firstFinished,setFirstFinished] = useState(false);
+    const [restrictions, setRestrictions] = useState([]);
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -33,6 +14,7 @@ const ChooseDiet = () => {
         formData.forEach((value,key) =>{
             data[key] = value;
         });
+        setRestrictions(data);
         console.log(data);
         setFirstFinished(!firstFinished);
     };
@@ -40,26 +22,6 @@ const ChooseDiet = () => {
     const handleChange = (e) =>{
         setFirstFinished(!firstFinished);
     };
-
-
-    const handleAdding = (e)=>{
-        e.stopPropagation();
-        const itemToAdd = e.target.value;
-        if (added.includes(itemToAdd)){
-            setAdded(added.filter(item => item !== itemToAdd));
-        }
-        else{
-            setAdded([...added,itemToAdd]);
-        }
-        
-    }
-
-    useEffect(() =>{
-        if(modal && selectedResult){
-            fetchdata(selectedResult.id);
-        }
-    },[modal,selectedResult])
-
 
   return (
     <div className='chooseDiet'>
@@ -110,33 +72,8 @@ const ChooseDiet = () => {
             </div>
 
         </div>
-        <div className={firstFinished ? 'searchMeals' : 'searchMeals hidden'}>
-            <SearchBar setResults={setResults}/>
-            <ul>
-            {results.map((result,id) => {
-                return <li key={id} onClick={() =>toggleModal(result)}>
-                    {result.title} 
-                    <button 
-                        className = {added.includes(`${result.id}`) ? 'red' : 'green'} 
-                        value={result.id} 
-                        onClick={(event) => {handleAdding(event)}}
-                    >
-                        {added.includes(`${result.id}`) ? '✖' : '✚'}
-                    </button>
-                </li>;
-            })}
-            </ul>
-            <div className='buttons'>
-                <button onClick={handleChange}>Back</button>
-                <button>Finish</button>
-            </div>
-
-            <Modal modal={modal} setModal={toggleModal} selectedResult={selectedResult}/>
-
-        </div>
-      
+        <SearchMeals firstFinished={firstFinished} handleChange={handleChange} restrictions={restrictions}/>
     </div>
   )
 }
-
 export default ChooseDiet
