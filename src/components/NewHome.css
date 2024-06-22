@@ -1,0 +1,148 @@
+.homeSection{
+    background-image: conic-gradient(from 90deg at -10% 100%, #bcc1cd 0deg, #bcc1cd 90deg, #fff 1turn);
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content:center;
+    padding: 90px;
+    position: relative;
+    font-size: 18px;
+    margin-top: 95px;
+}
+
+
+.homeSection .right{
+    flex: 50%;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content:center;
+    flex-direction: column;
+}
+
+.homeSection .title{
+    width: 100%;
+    text-align: center;
+}
+
+.homeSection .title h2{
+    margin-top: 22px;
+    margin-bottom: 6px;
+}
+
+.homeSection .left{
+    padding: 0px;
+    height: 100%;
+    flex: 30%;
+    display: flex;
+    align-items: baseline;
+    justify-content:center;
+    flex-direction: column;
+}
+
+.homeSection .left .recipeList{
+    width: 100%;
+    padding: 16px;
+    max-height: 400px;
+}
+
+.homeSection .left .recipeList li{
+    list-style: none;
+    background-image: conic-gradient(from 90deg at -10% 100%, #bcc1cd 0deg, #bcc1cd 90deg, #fff 1turn);
+    border: 2px solid;
+    border-radius: 4px;
+    padding: 16px;
+    margin-top: 5px;
+    font-size: 24px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.left .recipeList .red{
+    background-color: rgb(214, 39, 39);
+    color: white;
+    border: 0;
+    font-size: 20px;
+    min-width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    padding: 8px;
+    cursor: pointer;
+}
+
+.homeSection .right .shoppingList{
+    width: 100%;
+    padding: 16px;
+    height: 400px;
+    background-image: conic-gradient(from 90deg at -10% 100%, #bcc1cd 0deg, #bcc1cd 90deg, #fff 1turn);
+    border: 2px solid;
+    border-radius: 4px;
+}
+
+.homeSection h1{
+    margin: 10px 0px ;
+    color: #13af47;
+}
+
+.homeSection button{
+    background-color: #13af47;
+    color: white;
+    border-radius: 9999px;
+    border: 0;
+    font-size: 22px;
+    padding: 10px 40px;
+    cursor: pointer;
+}
+
+.homeSection p{
+    margin-bottom: 20px;
+}
+
+.homeSection button:hover{
+    background-color: #10923b;
+
+}
+
+.custom-shape-divider-top-1713526832 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+}
+
+.custom-shape-divider-top-1713526832 svg {
+    position: relative;
+    display: block;
+    width: calc(105% + 1.3px);
+    height: 135px;
+}
+
+.custom-shape-divider-top-1713526832 .shape-fill {
+    fill: #13AF47;
+}
+
+@media (max-width: 1000px){
+    .homeSection{
+        flex-direction: column;
+        padding-left: 20px;
+        padding-right: 20px;
+
+    }
+
+    .homeSection .right{
+        width: 80%;
+    }
+    .homeSection .left{
+        align-items: center;
+        flex: 0;
+        text-align: center;
+        width: 80%;
+    }
+}
