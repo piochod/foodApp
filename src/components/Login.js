@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import Cookies from 'js-cookie';
 import './Login.css'
 
 const Login = (registeredSuccesfully) => {
@@ -25,6 +26,11 @@ const Login = (registeredSuccesfully) => {
       });
       
       if (response.status === 200) {
+        const result = await response.json();
+        const accessToken = result.accessToken
+
+        Cookies.set('accessToken', accessToken, { expires: 1 });
+
         // routing na homepage
       } else if (response.status === 401) {
         setLoginError('Invalid mail or password');
