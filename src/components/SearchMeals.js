@@ -55,6 +55,14 @@ const SearchMeals = ({firstFinished, handleChange, restrictions}) => {
         setSecondFinished(true);
     };
 
+    const toggleModalFetched = (result) =>{
+        if(!modal){
+            setSelectedResult(result);
+        }
+        setModal(!modal);
+
+    }
+
     const handleFinishBack = () =>{
         setSecondFinished(false);
     }
@@ -92,7 +100,7 @@ const SearchMeals = ({firstFinished, handleChange, restrictions}) => {
                 <h1>Summary</h1>
                 <ul className='searchMealsList'>
                     {final?.map((result,id) =>{
-                    return <li key={id} onClick={() =>toggleModal(result)}>
+                    return <li key={id} onClick={() => toggleModalFetched(result)}>
                                 {result.recipe.label} 
                             </li>;
                 }) }
