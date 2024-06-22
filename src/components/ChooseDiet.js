@@ -25,9 +25,11 @@ const ChooseDiet = () => {
 
   return (
     <div className='chooseDiet'>
-        <h1>Choose your diet!</h1>
+        
         <div className={firstFinished ?'choiceScreen hidden' : 'choiceScreen'}>
-            <form onSubmit={handleSubmit}>                              
+           
+            <form onSubmit={handleSubmit}>       
+                <h2>Choose your diet!</h2>                       
                 <div className='choiceCol'>
                     <label >Are you a vegetarian? </label>
                     <div>

@@ -38,12 +38,12 @@
     background-color: #10923b;
 }
 
-.chooseDiet .searchMeals .searchMealsList{
+.chooseDiet .searchMeals .searchMealsList, .chooseDiet .finished ul{
     padding: 16px;
     max-height: 400px;
 }
 
-.chooseDiet .searchMeals .searchMealsList li{
+.chooseDiet .searchMeals .searchMealsList li, .chooseDiet .finished .searchMealsList li{
     list-style: none;
     background-image: conic-gradient(from 90deg at -10% 100%, #bcc1cd 0deg, #bcc1cd 90deg, #fff 1turn);
     border: 2px solid;
@@ -58,14 +58,15 @@
 }
 
 
-.chooseDiet .searchMeals .buttons{
+.chooseDiet .searchMeals .buttons, .finished .buttons{
+    width: 100%;
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 16px;
 }
 
-.chooseDiet .searchMeals .buttons button{
+.chooseDiet .searchMeals .buttons button, .chooseDiet .finished .buttons button{
     background-color: #13af47;
     color: white;
     border-radius: 9999px;
@@ -80,4 +81,18 @@
 
 .chooseDiet .searchMeals .buttons button:hover{
     background-color: #10923b;
+}
+
+.finished{
+    min-width: 400px;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.finished .searchMealsList ul{
+    padding: 8px;
 }

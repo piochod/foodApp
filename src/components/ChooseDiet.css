@@ -7,10 +7,10 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 100px;
+    padding: 105px;
     position: relative;
     flex-direction: column;
-    margin-top: 30px;
+    margin-top: 95px;
 }
 
 .chooseDiet .hidden{
