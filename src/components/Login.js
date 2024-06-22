@@ -17,7 +17,7 @@ const Login = (registeredSuccesfully) => {
     };
     
     try {
-      const response = await fetch('https://localhost:7182/register', {
+      const response = await fetch('https://localhost:7182/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

@@ -1,4 +1,5 @@
 import './App.css';
+import Register from './components/Register'
 import ChooseDiet from './components/ChooseDiet';
 import Login from './components/Login';
 import Footer from './components/Footer';
