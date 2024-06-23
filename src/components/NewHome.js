@@ -9,9 +9,41 @@ import Cookies from 'js-cookie'
 
 
 const NewHome = () => {
+  const [modal, setModal] = useState(false);
+  const [selectedResult, setSelectedResult] = useState(null);
+  const [loading, setLoading] = useState(false);
+
+  const toggleModal = (result) =>{
+    if(!modal){
+        fetchdata(result);
+    }
+    setModal(!modal);
+};
+const fetchdata = async (result) =>{
+    setLoading(true);
+    try{const response = await fetch(result);
+        const responseData = (await response.json());
+        console.log(responseData);
+        setSelectedResult(responseData);}
+    catch(error){
+        console.error('Error fetching', error);
+    }
+    finally{
+        setLoading(false);
+    }
+  };
 
   const [shoppingLists, setShoppingLists] = useState([]);
   const [selected, setSelected] = useState(window.localStorage.getItem("selected") === null ? 1 : Number(window.localStorage.getItem("selected")));
+  const [recipes, setRecipes] = useState([]);
+  const [mode, setMode] = useState(0);
+
+  const modeToggle = () => {
+    if(mode === 0)
+      setMode(1);
+    else
+      setMode(0);
+  }
 
   useEffect(() => {
     window.localStorage.setItem("selected", selected);
@@ -39,20 +71,6 @@ const NewHome = () => {
         <div className='title'>
           <h2>Your Lists</h2>
         </div>
-        {/* <ul className='recipeList'>
-          <li>Recipe #1<button className="red" value="">✖</button></li>
-          <li>Recipe #2<button className="red" value="">✖</button></li>
-          <li>Recipe #3<button className="red" value="">✖</button></li>
-          <li>Recipe #4<button className="red" value="">✖</button></li>
-          <li>Recipe #5<button className="red" value="">✖</button></li>
-          <li>Recipe #6<button className="red" value="">✖</button></li>
-          <li>Recipe #7<button className="red" value="">✖</button></li>
-          <li>Recipe #8<button className="red" value="">✖</button></li>
-          <li>Recipe #9<button className="red" value="">✖</button></li>
-          <li>Recipe #10<button className="red" value="">✖</button></li>
-          <li>Recipe #11<button className="red" value="">✖</button></li>
-          <li>Recipe #12<button className="red" value="">✖</button></li>
-        </ul> */}
         <ul className='recipeList'>
           {shoppingLists.map((data) => {
             let _key = data.listDetails[0].recipeList;
@@ -66,23 +84,32 @@ const NewHome = () => {
       </div>
       <div className='right'>
         <div className='title'>
-          <h2>Your Shopping List</h2>
+          { mode === 0 ? <h2>Your Shopping List</h2> : <h2>Your Recipes</h2>}
         </div>
-        <ul className='shoppingList'>
-        {shoppingLists.map((data) => {
-          let ingredientList = [];
-          for(let i = 0; i < data.listDetails.length; i++)
-          {
-            ingredientList.push(<li>{data.listDetails[i].ingredient} &emsp; {data.listDetails[i].quantity} g</li>)
-          }
-          if(data.listDetails[0].recipeList === selected)
-          {
-            return ingredientList;
-          }
-        })}
-        </ul>
-        <button className="green" value="">Show Recipies</button>
+        <div className='shoppingList'>
+          {mode === 0 ? shoppingLists.map((data) => {
+            if (data.listDetails[0].recipeList === selected) {
+              let ingredientList = [];
+
+              for (let i = 0; i < data.listDetails.length; i++) {
+                ingredientList.push(<li><div className="ingredientBox">{data.listDetails[i].ingredient}</div><div className="quantityBox">{data.listDetails[i].quantity} g</div></li>);
+              }
+              return ingredientList;
+            }
+          }) : shoppingLists.map((data) => {
+            if (data.listDetails[0].recipeList === selected) {
+              let names = [];
+
+              for (let i = 0; i < data.recipesNames.length; i++) {
+                names.push(<li onClick={() => {toggleModal(data.urLs[i])}}>{data.recipesNames[i]}</li>);
+              }
+              return names;
+            }
+          })}
+        </div>
+        <button className="green" value="" onClick={() => modeToggle()}> {mode === 0 ? "Show Recipes" : "Show Shopping List"} </button>
       </div>
+      <Modal modal={modal} setModal={toggleModal} loading = {loading} selectedResult={selectedResult}/>
     </div>
   )
 }
