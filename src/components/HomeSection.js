@@ -25,7 +25,7 @@ const HomeSection = () => {
             loop
           /></h2>
           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-          <button><Link to='login'>Sign Up</Link></button>
+          <button><Link to='register'>Sign Up</Link></button>
         </div>
         <div className='right'>
         
