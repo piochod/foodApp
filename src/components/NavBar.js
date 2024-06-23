@@ -1,10 +1,21 @@
+import { Link } from "react-router-dom";
 import "./NavBar.css"
-import {Link} from 'react-scroll'
+import Cookies from "js-cookie"
 
 const NavBar = ({
   menuOpen, setMenuOpen
 }) => {
 
+  const handleLogout = () =>{
+    
+    Cookies.remove('accessToken');
+    window.location.href = 'http://localhost:3000/foodApp/';
+  }
+
+
+  const moveHome = () =>{
+    Cookies.get('accessToken') ? window.location.href='http://localhost:3000/foodApp/home' : window.location.href= 'http://localhost:3000/foodApp/';
+  }
 
   return (
       <nav className='navbar'>
@@ -14,13 +25,14 @@ const NavBar = ({
             <span></span>
           </div>
         <div className='logo'>
-            <img src={require("./img/cutlery.png")} alt="cutlery"/>
+            <img src={require("./img/cutlery.png")} alt="cutlery" onClick={moveHome}/>
         </div>
           <ul className="links">
-              <Link to="home" smooth={true} offset={-95} duration={500}><li>Home</li></Link>
-              <Link to="about" smooth={true} offset={-95} duration={500}><li>About</li></Link>
-              <li>Sign in</li>
-              <li>Sign up</li>
+          {
+            Cookies.get('accessToken') ? <li onClick={handleLogout}>Log out</li> : <><li><Link to='http://localhost:3000/foodApp/login'>Sign in</Link></li> <li><Link to='http://localhost:3000/foodApp/register'>Sign up</Link></li></>
+
+              
+          }
           </ul>
       </nav>
       

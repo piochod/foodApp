@@ -20,17 +20,26 @@ function App() {
   function checkAuth() {
     const token = Cookies.get('accessToken');
     if (!token) {
-      throw redirect('/foodApp/login');
+      throw redirect('http://localhost:3000/foodApp/');
     }
     return null;
+  }
+
+  function checkNotAuth() {
+    const token = Cookies.get('accessToken');
+    if (token) {
+      throw redirect('http://localhost:3000/foodApp/home')
+    }
+    return null;
+    
   }
 
   const router = createBrowserRouter(
     createRoutesFromElements(
       <Route>
-        <Route path="/foodApp" element={<HomePage />} />
-        <Route path="/foodApp/login" element={<LoginPage />}/> 
-        <Route path="/foodApp/register" element={<RegisterPage />} />
+        <Route path="/foodApp" element={<HomePage />} loader={checkNotAuth}/>
+        <Route path="/foodApp/login" element={<LoginPage />} loader={checkNotAuth}/> 
+        <Route path="/foodApp/register" element={<RegisterPage />} loader={checkNotAuth}/>
         <Route path='/foodApp/home'   
         element = {<LoogedHomePage />}
         loader = {checkAuth}  />      
