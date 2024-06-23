@@ -63,6 +63,11 @@
     justify-content: space-between;
 }
 
+.homeSection .left .recipeList .active{
+    border: 6px solid;
+    border-radius: 8px;
+}
+
 .left .recipeList .red{
     background-color: rgb(214, 39, 39);
     color: white;
