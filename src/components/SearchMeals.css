@@ -2,6 +2,10 @@
     width: 100%;
 }
 
+.chooseDiet .searchContainer{
+    width: 100%;
+}
+
 .chooseDiet .searchMeals .green{
     background-color: #13af47;
     color: white;
@@ -41,6 +45,7 @@
 .chooseDiet .searchMeals .searchMealsList, .chooseDiet .finished ul{
     padding: 16px;
     max-height: 400px;
+    width: 100%;
 }
 
 .chooseDiet .searchMeals .searchMealsList li, .chooseDiet .finished .searchMealsList li{

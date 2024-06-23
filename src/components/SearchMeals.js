@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import Modal from './Modal';
 import SearchBar from './SearchBar';
 import './SearchMeals.css';
+import Cookies from 'js-cookie';
 
 const SearchMeals = ({firstFinished, handleChange, restrictions}) => {
     const [results, setResults] = useState([]);
@@ -12,8 +13,6 @@ const SearchMeals = ({firstFinished, handleChange, restrictions}) => {
     const [final,setFinal]= useState([]);
     const [secondFinished,setSecondFinished] = useState(false);
     
-    
-
     const handleAdding = (e)=>{
         e.stopPropagation();
         const itemToAdd = e.target.value;
@@ -61,18 +60,52 @@ const SearchMeals = ({firstFinished, handleChange, restrictions}) => {
         }
         setModal(!modal);
 
-    }
+    };
 
     const handleFinishBack = () =>{
         setSecondFinished(false);
-    }
+    };
 
-    const handlePost = () =>{
+    const handlePost = async () =>{
+        let ingredients = [];
+        let urls = [];
+        let names = [];
+        final.forEach(result => {
+            urls = [...urls,result._links.self.href];
+            names = [...names,result.recipe.label];
+            result.recipe.ingredients.forEach(ingredient =>{
+                let res = {
+                    "ingredient" : `${ingredient.food}`,
+                    "quantity" : `${ingredient.weight}`
+                }
+                ingredients = [...ingredients,res]
+            })
+             
+        });
+        const jsonObject = {
+            name: "listaa1",
+            urLs: urls,
+            recipesNames: names,
+            listDetails: ingredients,
+            creationDate: new Date().toISOString()
+        };
 
+        console.log(JSON.stringify(jsonObject))
+        const token = Cookies.get('accessToken');
+
+        const response = await fetch('https://localhost:7182/api/List',{
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            },
+            body: JSON.stringify(jsonObject)
+        });
+        console.log(response.json());
     }
 
   return (
-    <div>
+    <div className='searchContainer'>
         <div className={firstFinished && !secondFinished ? 'searchMeals' : 'searchMeals hidden'}>
             <SearchBar setResults={setResults} restrictions={restrictions}/>
             <ul className='searchMealsList'>

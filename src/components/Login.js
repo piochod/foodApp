@@ -30,7 +30,7 @@ const Login = (registeredSuccesfully) => {
         const accessToken = result.accessToken
 
         Cookies.set('accessToken', accessToken, { expires: 1 });
-
+        window.location.href= 'http://localhost:3000/foodApp/home'
         // routing na homepage
       } else if (response.status === 401) {
         setLoginError('Invalid mail or password');

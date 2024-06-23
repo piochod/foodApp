@@ -1,6 +1,7 @@
 import React from 'react'
 import {ReactTyped} from 'react-typed'
 import './HomeSection.css'
+import { Link } from 'react-router-dom'
 
 const HomeSection = () => {
   return (
@@ -24,7 +25,7 @@ const HomeSection = () => {
             loop
           /></h2>
           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-          <button>Sign Up</button>
+          <button><Link to='login'>Sign Up</Link></button>
         </div>
         <div className='right'>
         

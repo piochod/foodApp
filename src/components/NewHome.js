@@ -1,20 +1,6 @@
 import React from 'react'
-import { ReactTyped } from 'react-typed'
-import { useState } from 'react'
-import SearchBar from './SearchBar'
-import Modal from './Modal'
 import './NewHome.css'
 
-function FetchLists(url, token) {
-  var response = fetch(url, {
-    method: "GET",
-    headers: {
-      accept: '*/*',
-      Authorization: `Bearer ${token}`
-    }
-  });
-  return response;
-}
 
 const NewHome = () => {
   return (

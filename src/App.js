@@ -1,22 +1,45 @@
 import './App.css';
-import Register from './components/Register'
-import ChooseDiet from './components/ChooseDiet';
-import Login from './components/Login';
-import Footer from './components/Footer';
-import NavBar from './components/NavBar';
 import Cookies from 'js-cookie';
-import { useState } from 'react';
+
+import {
+  createBrowserRouter,
+  RouterProvider,
+  Route,
+  createRoutesFromElements,
+  redirect
+} from "react-router-dom";
+import LoginPage from './pages/LoginPage';
+import HomePage from './pages/HomePage';
+import LoogedHomePage from './pages/LoogedHomePage';
+import ChoicePage from './pages/ChoicePage';
 
 function App() {
 
-  const [menuOpen,setMenuOpen] = useState(false);
-  const accessToken = Cookies.get('accessToken');
+
+  function checkAuth() {
+    const token = Cookies.get('accessToken');
+    if (!token) {
+      throw redirect('/foodApp/login');
+    }
+    return null;
+  }
+
+  const router = createBrowserRouter(
+    createRoutesFromElements(
+      <Route>
+        <Route path="/foodApp" element={<HomePage />} />
+        <Route path="/foodApp/login" element={<LoginPage />}/> 
+        <Route path='/foodApp/home'   
+        element = {<LoogedHomePage />}
+        loader = {checkAuth}  />      
+        <Route path='/foodApp/addList' element={<ChoicePage />} loader={checkAuth} />
+      </Route>
+    )
+  )
 
   return (
     <div className="App">
-      <NavBar menuOpen={menuOpen} setMenuOpen={() => setMenuOpen(!menuOpen)}/>
-      <Login />
-      <Footer />
+      <RouterProvider router={router} />
     </div>
   );
 }
