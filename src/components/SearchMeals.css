@@ -101,3 +101,15 @@
 .finished .searchMealsList ul{
     padding: 8px;
 }
+
+
+.finished .inputContainer{
+    padding: 16px;
+    width: 100%;
+}
+
+.finished .inputContainer input{
+    width: 100%;
+    padding: 16px;
+    font-size: 20px;
+}

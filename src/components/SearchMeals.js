@@ -12,6 +12,7 @@ const SearchMeals = ({firstFinished, handleChange, restrictions}) => {
     const [loading, setLoading] = useState(false);
     const [final,setFinal]= useState([]);
     const [secondFinished,setSecondFinished] = useState(false);
+    const [name, setName] = useState('');
     
     const handleAdding = (e)=>{
         e.stopPropagation();
@@ -66,6 +67,10 @@ const SearchMeals = ({firstFinished, handleChange, restrictions}) => {
         setSecondFinished(false);
     };
 
+    const handleInputChange = (e) =>{
+        setName(e.target.value);
+    };
+
     const handlePost = async () =>{
         let ingredients = [];
         let urls = [];
@@ -83,16 +88,13 @@ const SearchMeals = ({firstFinished, handleChange, restrictions}) => {
              
         });
         const jsonObject = {
-            name: "listaa1",
+            name: name==='' ? null : name,
             urLs: urls,
             recipesNames: names,
             listDetails: ingredients,
             creationDate: new Date().toISOString()
         };
-
-        console.log(JSON.stringify(jsonObject))
         const token = Cookies.get('accessToken');
-
         const response = await fetch('https://localhost:7182/api/List',{
             method: 'POST',
             headers: {
@@ -101,7 +103,10 @@ const SearchMeals = ({firstFinished, handleChange, restrictions}) => {
             },
             body: JSON.stringify(jsonObject)
         });
-        console.log(response.json());
+        if(response.status === 200){
+            window.location.href = 'http://localhost:3000/foodApp/home';
+        }
+        
     }
 
   return (
@@ -131,6 +136,9 @@ const SearchMeals = ({firstFinished, handleChange, restrictions}) => {
         </div>
         <div className={secondFinished ? 'finished' : 'finished hidden'}>
                 <h1>Summary</h1>
+                <div className='inputContainer'>
+                    <input placeholder='Name the List' value={name} onChange={handleInputChange} ></input>
+                </div>
                 <ul className='searchMealsList'>
                     {final?.map((result,id) =>{
                     return <li key={id} onClick={() => toggleModalFetched(result)}>
