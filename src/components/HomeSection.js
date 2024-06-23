@@ -24,7 +24,7 @@ const HomeSection = () => {
             backSpeed={60}
             loop
           /></h2>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+          <p>Choose your meals and get shopping list and recipes!</p>
           <button><Link to='register'>Sign Up</Link></button>
         </div>
         <div className='right'>

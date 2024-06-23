@@ -1,6 +1,5 @@
 import './App.css';
 import Cookies from 'js-cookie';
-
 import {
   createBrowserRouter,
   RouterProvider,
