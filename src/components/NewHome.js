@@ -1,11 +1,8 @@
-
-
 import React, { useEffect } from 'react'
 import { ReactTyped } from 'react-typed'
 import { useState } from 'react'
 import SearchBar from './SearchBar'
 import Modal from './Modal'
-
 import './NewHome.css'
 import { Component } from 'react'
 
@@ -13,10 +10,14 @@ import { Component } from 'react'
 const NewHome = () => {
 
   const [shoppingLists, setShoppingLists] = useState([]);
-  const [selected, setSelected] = useState(1);
+  const [selected, setSelected] = useState(window.localStorage.getItem("selected") === null ? 1 : Number(window.localStorage.getItem("selected")));
+
+  useEffect(() => {
+    window.localStorage.setItem("selected", selected);
+  }, [selected]);
 
   const FetchLists = async () => {
-    const token = 'CfDJ8BdjEk0vnStMhBNVFNbBqWS7BIdKsVwMdnjrfXqfTfYCO9d0ZiuZZF3N0OTqLQgxDUv7OE0JlTLrhvpLm_2e1kh1_siVVv1xAxS1WyiV3-NLTb8pkTgupEvnoTXHEvwrSTowFuxJ_EfObYfxnz-2IZvSE62J3pB_wN2gXUNiPleY4eItDlB94PYS_O4xduNu8aooWJH5jRHVHXrrlciDnFwopqqHT19F_RM1mcdbiHIL0CrBIJGYJY8GET20jTwDapOsT_3VE21mN3j01F0Jw-4Okkhs6hrGdhS4Lld9lpK5_tqpelaGcjUF0EujVQ9oMlj7tpCq6Tf3ReAtaO_qaHnsKR0oQmWxYs4VjUuDdpLVkZ_wwPW8E9CYr4nDAOCKASb2X-40waFmmrc1IN4hQRYML0TkkhXLAuhcP58J9-x7URvuuP-8cBKdlU2-HJBbbTB0L52zMZUcw3mY_SHBEeQr7DVK8J3IgcPk2YgcfvgKJijoyUMScEvkYLbW9_PRfCrc9dP3FTv1bhHhLIqSMucaMT1uUCfH189hpfBJXJz-ZDj729nps071XlVGlO3f0q7fbuS5j0w0dmA-OIF-qCn3zzTkEfgrg6xKdZvz_X8AApUwVQxlSFTcJqVlQIq0pdV8p3pRCr8jDdHDpE7z8o-19yZUGsFIHedj5CDwR21Ei29BjX3-aigt8svWf1k1HQ';
+    const token = 'CfDJ8BdjEk0vnStMhBNVFNbBqWTLpVNJxmNPKq1Oxcu1BFMQwsdMckOR9uTJzZbhbYQmG5jcjyw7Iwh7LpkEb53SbnKwcFCwdyj5qlRwUlFY2J4tqyxd-FrcuSm5RmEfDzp6WsybhG5zAWCkpKxy-RV7C5xbn_V4mnROAHNiEVFZEPX3ncObLHOKhUl0pKjq-ITkMH8wo7f4Hf9aS6OQiN696aEHOGjTy2mgJYdq6QKJtuO5ntd1-6zOjcbbcAN0O47KoEMjLBcMBn1fu_qLQwHY_mb2HChIRjYTRMC6TDxgxd7iQyGhTFTm4DcPnRkDIDI18SydL7l9ASuGn-0lidyxwV5TgTpn_cE2zwjCYYtyDlW4LWv_2iPrm9qdq7_Wcm6TvGHW_88dwzHFZ8jIB2lMfJ9n6qPVi2HlYFK-kSm5Qv_xN7NYavRjD-_6s3eZ2Cf83Wk0CqvCgYK0mywzG10KaIzNMiXwAbOp_4BMlMuK6DNR0x_MesE33fXNJUQX3yVohGELzfkN2dxgjl68Wd2KY-eOkvOr87hsBHtVsj8LAXnEJxkK1wHQL9DqcARa1HquQCQkxK5y4koTwVhHmM-hetrXjVHt-5dHdkbY_mTsZRfudaP22wQN2sriz2XAqAmrhzY0UHchFoNu3unKFEvhEkth3mRv72Q9d2Irg6BX7h0Jls9ZTBrxdk0rHhvLoFCcpw';
     const response = await fetch('https://localhost:7182/api/List/all', {
       method: "GET",
       headers: {
@@ -73,12 +74,13 @@ const NewHome = () => {
           {
             ingredientList.push(<li>{data.listDetails[i].ingredient} &emsp; {data.listDetails[i].quantity} g</li>)
           }
-          if(data.listDetails[0].recipeList == selected)
+          if(data.listDetails[0].recipeList === selected)
           {
             return ingredientList;
           }
         })}
         </ul>
+        <button className="green" value="">Show Recipies</button>
       </div>
     </div>
   )

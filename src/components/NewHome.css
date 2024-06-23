@@ -45,8 +45,8 @@
 
 .homeSection .left .recipeList{
     width: 100%;
-    padding: 16px;
-    max-height: 400px;
+    padding: 0px 16px 0px 16px;
+    height: 400px;
 }
 
 .homeSection .left .recipeList li{
@@ -135,10 +135,9 @@
 
 @media (max-width: 1000px){
     .homeSection{
-        flex-direction: column;
+        flex-direction: column-reverse;
         padding-left: 20px;
         padding-right: 20px;
-
     }
 
     .homeSection .right{
