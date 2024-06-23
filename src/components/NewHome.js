@@ -5,6 +5,7 @@ import SearchBar from './SearchBar'
 import Modal from './Modal'
 import './NewHome.css'
 import { Component } from 'react'
+import Cookies from 'js-cookie'
 
 
 const NewHome = () => {
@@ -17,7 +18,7 @@ const NewHome = () => {
   }, [selected]);
 
   const FetchLists = async () => {
-    const token = 'CfDJ8BdjEk0vnStMhBNVFNbBqWTLpVNJxmNPKq1Oxcu1BFMQwsdMckOR9uTJzZbhbYQmG5jcjyw7Iwh7LpkEb53SbnKwcFCwdyj5qlRwUlFY2J4tqyxd-FrcuSm5RmEfDzp6WsybhG5zAWCkpKxy-RV7C5xbn_V4mnROAHNiEVFZEPX3ncObLHOKhUl0pKjq-ITkMH8wo7f4Hf9aS6OQiN696aEHOGjTy2mgJYdq6QKJtuO5ntd1-6zOjcbbcAN0O47KoEMjLBcMBn1fu_qLQwHY_mb2HChIRjYTRMC6TDxgxd7iQyGhTFTm4DcPnRkDIDI18SydL7l9ASuGn-0lidyxwV5TgTpn_cE2zwjCYYtyDlW4LWv_2iPrm9qdq7_Wcm6TvGHW_88dwzHFZ8jIB2lMfJ9n6qPVi2HlYFK-kSm5Qv_xN7NYavRjD-_6s3eZ2Cf83Wk0CqvCgYK0mywzG10KaIzNMiXwAbOp_4BMlMuK6DNR0x_MesE33fXNJUQX3yVohGELzfkN2dxgjl68Wd2KY-eOkvOr87hsBHtVsj8LAXnEJxkK1wHQL9DqcARa1HquQCQkxK5y4koTwVhHmM-hetrXjVHt-5dHdkbY_mTsZRfudaP22wQN2sriz2XAqAmrhzY0UHchFoNu3unKFEvhEkth3mRv72Q9d2Irg6BX7h0Jls9ZTBrxdk0rHhvLoFCcpw';
+    const token = Cookies.get('accessToken');
     const response = await fetch('https://localhost:7182/api/List/all', {
       method: "GET",
       headers: {

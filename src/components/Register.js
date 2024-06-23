@@ -36,6 +36,7 @@ const Register = () => {
       console.log(response)
       if (response.status === 200) {
         setRegisteredSuccessfully(true);
+        window.location.href = 'http://localhost:3000/foodApp/login'
         
       } else if (response.status === 400) {
         setRegisterError('User already exists');
@@ -49,6 +50,7 @@ const Register = () => {
   return (
     <div className='register'>
       <form>
+        <h1>Sing up</h1>
         <input 
           value={email} 
           placeholder='e-mail'

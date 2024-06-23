@@ -9,6 +9,7 @@ import {
   redirect
 } from "react-router-dom";
 import LoginPage from './pages/LoginPage';
+import RegisterPage from './pages/RegisterPage';
 import HomePage from './pages/HomePage';
 import LoogedHomePage from './pages/LoogedHomePage';
 import ChoicePage from './pages/ChoicePage';
@@ -29,6 +30,7 @@ function App() {
       <Route>
         <Route path="/foodApp" element={<HomePage />} />
         <Route path="/foodApp/login" element={<LoginPage />}/> 
+        <Route path="/foodApp/register" element={<RegisterPage />} />
         <Route path='/foodApp/home'   
         element = {<LoogedHomePage />}
         loader = {checkAuth}  />      
