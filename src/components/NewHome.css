@@ -38,7 +38,7 @@
     height: 100%;
     flex: 30%;
     display: flex;
-    align-items: baseline;
+    align-items: center;
     justify-content:center;
     flex-direction: column;
 }
@@ -46,7 +46,7 @@
 .homeSection .left .recipeList{
     width: 100%;
     padding: 0px 16px 0px 16px;
-    height: 454px;
+    height: 400px;
     margin: 16px 0px 16px 0px;
 }
 
@@ -92,6 +92,7 @@
 }
 
 .homeSection .right .shoppingList li{
+    font-size: 24px;
     display: flex;
     width: 100%;
 }
@@ -104,12 +105,22 @@
     width: 50%;
 }
 
+.homeSection .right .shoppingList .recipe{
+    background-image: conic-gradient(from 90deg at -10% 100%, #bcc1cd 0deg, #bcc1cd 90deg, #fff 1turn);
+    border: 2px solid;
+    border-radius: 4px;
+    padding: 16px;
+    font-size: 32px;
+    cursor: pointer;
+    margin-top: 5px;
+}
+
 .homeSection h1{
     margin: 10px 0px ;
     color: #13af47;
 }
 
-.homeSection button{
+.homeSection .right button{
     background-color: #13af47;
     color: white;
     border-radius: 9999px;
@@ -123,7 +134,7 @@
     margin-bottom: 20px;
 }
 
-.homeSection button:hover{
+.homeSection .right button:hover{
     background-color: #10923b;
 
 }

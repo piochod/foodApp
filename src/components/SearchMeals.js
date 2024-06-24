@@ -75,17 +75,26 @@ const SearchMeals = ({firstFinished, handleChange, restrictions}) => {
         let ingredients = [];
         let urls = [];
         let names = [];
+
         final.forEach(result => {
-            urls = [...urls,result._links.self.href];
-            names = [...names,result.recipe.label];
-            result.recipe.ingredients.forEach(ingredient =>{
-                let res = {
-                    "ingredient" : `${ingredient.food}`,
-                    "quantity" : `${ingredient.weight}`
+            urls = [...urls, result._links.self.href];
+            names = [...names, result.recipe.label];
+            result.recipe.ingredients.forEach(ingredient => {
+        // Check if the ingredient is already in the ingredients array
+            let existingIngredient = ingredients.find(item => item.ingredient === ingredient.food);
+        
+            if (existingIngredient) {
+            // If the ingredient is found, add the weight to the existing quantity
+                existingIngredient.quantity = parseFloat(existingIngredient.quantity) + parseFloat(ingredient.weight);
+            } else {
+            // If the ingredient is not found, add a new object to the ingredients array
+                    let res = {
+                    "ingredient": ingredient.food,
+                    "quantity": ingredient.weight
+                    };
+                ingredients = [...ingredients, res];
                 }
-                ingredients = [...ingredients,res]
-            })
-             
+            });
         });
         const jsonObject = {
             name: name==='' ? null : name,
