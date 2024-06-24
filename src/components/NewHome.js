@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 const NewHome = () => {
   const [modal, setModal] = useState(false);
   const [selectedResult, setSelectedResult] = useState(null);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   const toggleModal = (result) =>{
     if(!modal){
@@ -33,7 +33,6 @@ const NewHome = () => {
   const [shoppingLists, setShoppingLists] = useState([]);
   const [selected, setSelected] = useState(window.localStorage.getItem("selected") === null ? 1 : Number(window.localStorage.getItem("selected")));
   const [mode, setMode] = useState(0);
-
   const modeToggle = () => {
     setMode((prevMode) => (prevMode === 0 ? 1 : 0));
   };
@@ -60,6 +59,9 @@ const NewHome = () => {
 
   return (
     <div className='homeSection' id='home'>
+
+      {shoppingLists.length != 0 ?
+      <>
       <div className='left'>
         <div className='title'>
           <h2>Your Lists</h2>
@@ -110,6 +112,19 @@ const NewHome = () => {
         </button>
       </div>
       <Modal modal={modal} setModal={toggleModal} loading={loading} selectedResult={selectedResult} />
+      </> : <>
+        <div className='listEmpty'>
+          <div className='inner'>
+            <h2>No lists have been found!</h2>
+            <button>
+              <Link to='http://localhost:3000/foodApp/addList'>Add a new list</Link>
+            </button>
+          </div>
+
+        </div>
+      </>
+      }
+
     </div>
   );
 };
