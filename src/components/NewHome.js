@@ -4,7 +4,6 @@ import './NewHome.css';
 import Cookies from 'js-cookie';
 import { Link } from 'react-router-dom';
 
-
 const NewHome = () => {
   const [modal, setModal] = useState(false);
   const [selectedResult, setSelectedResult] = useState(null);
@@ -15,18 +14,19 @@ const NewHome = () => {
         fetchdata(result);
     }
     setModal(!modal);
-};
-const fetchdata = async (result) =>{
+  };
+
+  const fetchdata = async (result) => {
     setLoading(true);
-    try{const response = await fetch(result);
-        const responseData = (await response.json());
-        console.log(responseData);
-        setSelectedResult(responseData);}
-    catch(error){
-        console.error('Error fetching', error);
-    }
-    finally{
-        setLoading(false);
+    try {
+      const response = await fetch(result);
+      const responseData = await response.json();
+      console.log(responseData);
+      setSelectedResult(responseData);
+    } catch (error) {
+      console.error('Error fetching', error);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -35,11 +35,8 @@ const fetchdata = async (result) =>{
   const [mode, setMode] = useState(0);
 
   const modeToggle = () => {
-    if(mode === 0)
-      setMode(1);
-    else
-      setMode(0);
-  }
+    setMode((prevMode) => (prevMode === 0 ? 1 : 0));
+  };
 
   useEffect(() => {
     window.localStorage.setItem("selected", selected);
@@ -55,11 +52,11 @@ const fetchdata = async (result) =>{
       }
     });
     setShoppingLists(await response.json());
-  }
+  };
 
   useEffect(() => {
     FetchLists();
-  }, [])
+  }, []);
 
   return (
     <div className='homeSection' id='home'>
@@ -68,48 +65,53 @@ const fetchdata = async (result) =>{
           <h2>Your Lists</h2>
         </div>
         <ul className='recipeList'>
-          {shoppingLists.map((data) => {
-            let _key = data.listDetails[0].recipeList;
-            return(
-              <li key={_key} className={_key === selected ? "active" : null} onClick={() => {setSelected(_key)}}>{data.name === null ? "Shopping List #"+data.listDetails[0].recipeList : data.name}<button className="red" value="">✖</button></li>
+          {shoppingLists.map((data, index) => {
+            const _key = data.listDetails[0].recipeList;
+            return (
+              <li key={`${_key}-${index}`} className={_key === selected ? "active" : null} onClick={() => { setSelected(_key) }}>
+                {data.name === null ? "Shopping List #" + data.listDetails[0].recipeList : data.name}
+                <button className="red" value="">✖</button>
+              </li>
             );
           })}
         </ul>
-        <button><Link to='http://localhost:3000/foodApp/addList'>Add a new list</Link></button>
-        
+        <button>
+          <Link to='http://localhost:3000/foodApp/addList'>Add a new list</Link>
+        </button>
       </div>
       <div className='right'>
         <div className='title'>
-          { mode === 0 ? <h2>Your Shopping List</h2> : <h2>Your Recipes</h2>}
+          {mode === 0 ? <h2>Your Shopping List</h2> : <h2>Your Recipes</h2>}
         </div>
         <div className='shoppingList'>
-          {mode === 0 ? shoppingLists?.map((data,id) => {
+          {mode === 0 ? shoppingLists?.map((data, listIndex) => {
             if (data.listDetails[0].recipeList === selected) {
-              let ingredientList = [];
-
-              for (let i = 0; i < data.listDetails.length; i++) {
-                ingredientList.push(<li key={id}><div className="ingredientBox">{data.listDetails[i].ingredient.charAt(0).toUpperCase() + data.listDetails[i].ingredient.slice(1)}</div><div className="quantityBox">{Math.round(data.listDetails[i].quantity) } g</div></li>);
-              }
-              return ingredientList;
+              return data.listDetails.map((detail, detailIndex) => (
+                <li key={`${listIndex}-${detailIndex}`}>
+                  <div className="ingredientBox">{detail.ingredient.charAt(0).toUpperCase() + detail.ingredient.slice(1)}</div>
+                  <div className="quantityBox">{Math.round(detail.quantity)} g</div>
+                </li>
+              ));
             }
             return null;
-          }) : shoppingLists?.map((data,id) => {
+          }) : shoppingLists?.map((data, listIndex) => {
             if (data.listDetails[0].recipeList === selected) {
-              let names = [];
-
-              for (let i = 0; i < data?.recipesNames.length; i++) {
-                names.push(<li className='recipe' key={id} onClick={() => {toggleModal(data.urLs[i])}}>{data?.recipesNames[i]}</li>);
-              }
-              return names;
+              return data.recipesNames.map((recipeName, recipeIndex) => (
+                <li className='recipe' key={`${listIndex}-${recipeIndex}`} onClick={() => { toggleModal(data.urLs[recipeIndex]) }}>
+                  {recipeName}
+                </li>
+              ));
             }
             return null;
           })}
         </div>
-        <button className="green" value="" onClick={() => modeToggle()}> {mode === 0 ? "Show Recipes" : "Show Shopping List"} </button>
+        <button className="green" value="" onClick={() => modeToggle()}>
+          {mode === 0 ? "Show Recipes" : "Show Shopping List"}
+        </button>
       </div>
-      <Modal modal={modal} setModal={toggleModal} loading = {loading} selectedResult={selectedResult}/>
+      <Modal modal={modal} setModal={toggleModal} loading={loading} selectedResult={selectedResult} />
     </div>
-  )
-}
+  );
+};
 
-export default NewHome
+export default NewHome;
